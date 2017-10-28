@@ -20,6 +20,12 @@ open class Navigator: NavigatorType {
     self.viewControllerFactories[pattern] = factory
   }
 
+  open func register(_ patterns: [URLPattern], _ factory: @escaping ViewControllerFactory) {
+      for pattern in patterns {
+          self.register(pattern, factory)
+      }
+  }
+  
   open func handle(_ pattern: URLPattern, _ factory: @escaping URLOpenHandlerFactory) {
     self.handlerFactories[pattern] = factory
   }
