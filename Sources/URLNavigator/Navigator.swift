@@ -29,6 +29,12 @@ open class Navigator: NavigatorType {
   open func handle(_ pattern: URLPattern, _ factory: @escaping URLOpenHandlerFactory) {
     self.handlerFactories[pattern] = factory
   }
+  
+  open func handle(_ patterns: [URLPattern], _ factory: @escaping URLOpenHandlerFactory) {
+    for pattern in patterns {
+          self.handle(pattern, factory)
+    }
+  }
 
   open func viewController(for url: URLConvertible, context: Any? = nil) -> UIViewController? {
     let urlPatterns = Array(self.viewControllerFactories.keys)
